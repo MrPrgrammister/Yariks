@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://videos/Новый проект.webm" type="VideoStream" id=1]
+
+[node name="Viewport" type="Control"]
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1280.0
+margin_right = 2560.0
+margin_bottom = 720.0
+rect_scale = Vector2( -1, 1 )
+stream = ExtResource( 1 )
+autoplay = true
+expand = false

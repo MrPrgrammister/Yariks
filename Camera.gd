@@ -3,6 +3,14 @@ extends Camera
 
 export var state = "none"
 
+export var texture_subShieldZayavka : Material
+export var texture_subShield1 : Material
+export var texture_subShield2 : Material
+export var texture_subShield3 : Material
+export var texture_camCorridor4 : Material
+export var texture_camRoom1 : Material
+
+
 func _process(delta):
 	if Input.is_action_pressed("game_watchDoor"):
 		$AnimationTree.set("parameters/conditions/wathDoor", true)
