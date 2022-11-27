@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=2]
+[gd_scene load_steps=126 format=2]
 
 [ext_resource path="res://models/Stol.glb" type="PackedScene" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://videos/The Bash Singing Slashy Regular 400.png" type="Texture" id=14]
 [ext_resource path="res://videos/SubShield2.webm" type="VideoStream" id=15]
 [ext_resource path="res://videos/SubShield3.webm" type="VideoStream" id=16]
+[ext_resource path="res://videos/LinuxInstall2.webm" type="VideoStream" id=17]
 
 [sub_resource type="GDScript" id=68]
 script/source = "extends VideoPlayer
@@ -169,6 +170,22 @@ params_specular_mode = 4
 params_cull_mode = 2
 params_depth_draw_mode = 2
 albedo_texture = SubResource( 109 )
+uv1_scale = Vector3( 1.1, 0.6, 0.6 )
+uv1_offset = Vector3( -0.5, -0.5, -0.5 )
+uv1_triplanar = true
+
+[sub_resource type="ViewportTexture" id=117]
+viewport_path = NodePath("Cams/InstallingLinux")
+
+[sub_resource type="SpatialMaterial" id=118]
+resource_local_to_scene = true
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+flags_disable_ambient_light = true
+params_specular_mode = 4
+params_cull_mode = 2
+params_depth_draw_mode = 2
+albedo_texture = SubResource( 117 )
 uv1_scale = Vector3( 1.1, 0.6, 0.6 )
 uv1_offset = Vector3( -0.5, -0.5, -0.5 )
 uv1_triplanar = true
@@ -547,6 +564,36 @@ graph_offset = Vector2( -483, 14 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=33]
 
+[sub_resource type="StyleBoxFlat" id=80]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="Gradient" id=74]
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=75]
+gradient = SubResource( 74 )
+
+[sub_resource type="ExternalTexture" id=79]
+
+[sub_resource type="StyleBoxFlat" id=77]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id=78]
+bg_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+border_blend = true
+expand_margin_top = 5.0
+expand_margin_bottom = 6.0
+
 [sub_resource type="ArrayMesh" id=40]
 resource_name = "Stol_Куб"
 surfaces/0 = {
@@ -757,52 +804,6 @@ surfaces/0 = {
 "vertex_count": 24
 }
 
-[sub_resource type="BoxShape" id=72]
-margin = 1.003
-extents = Vector3( 0.176, 0.136, 0.197 )
-
-[sub_resource type="GDScript" id=73]
-script/source = "extends Control
-
-func _process(delta):
-	$HSlider.value = $\"../AudioStreamPlayer3D\".get_playback_position()
-	if $HSlider.value > 360:
-		$\"../AudioStreamPlayer3D\".play()
-
-func _on_Button_pressed():
-	$\"../AudioStreamPlayer3D\".play()
-"
-
-[sub_resource type="Gradient" id=74]
-colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture" id=75]
-gradient = SubResource( 74 )
-
-[sub_resource type="ExternalTexture" id=79]
-
-[sub_resource type="StyleBoxFlat" id=77]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-expand_margin_top = 6.0
-expand_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxFlat" id=78]
-bg_color = Color( 0.823529, 0.823529, 0.823529, 1 )
-border_blend = true
-expand_margin_top = 5.0
-expand_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxFlat" id=80]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-
 [sub_resource type="ArrayMesh" id=54]
 resource_name = "Stol_Куб018"
 surfaces/0 = {
@@ -970,6 +971,89 @@ surfaces/0 = {
 "skeleton_aabb": [  ],
 "vertex_count": 1248
 }
+
+[sub_resource type="GDScript" id=113]
+script/source = "extends Spatial
+
+export var position = \"notexist\"
+onready var anim = $AnimationPlayer
+onready var timer = $Timer
+
+func _ready():
+	position = \"notexist\"
+	anim.play(\"RESET\")
+	makeStep()
+	
+func makeStep():
+	match position:
+		\"notexist\":
+			if rand_range(0, 5) > 2.5:
+				position = \"room1\"
+				anim.play(\"RESET\")
+			timer.wait_time = rand_range(5, 15)
+			timer.start()
+		\"room1\":
+			if rand_range(0, 5) > 2.5:
+				position = \"preRun\"
+				anim.play(\"PreRunCoridor\")
+			else:
+				if rand_range(0, 5) > 2.5:
+					anim.play(\"RESET\")
+				else:
+					anim.play(\"InRoom\")
+			timer.wait_time = rand_range(5, 15)
+			timer.start()
+		\"preRun\":
+			if rand_range(0, 5) > 2.5:
+				position = \"room1\"
+				anim.play(\"InRoom\")
+			else:
+				position = \"RunCorridor\"
+				anim.play(\"RunCorridor\")
+			timer.wait_time = rand_range(4, 15)
+			timer.start()
+		\"RunCorridor\":
+			position = \"PreCorridor1\"
+			anim.play(\"Corridor1VigladivaetIn\")
+			timer.wait_time = rand_range(10, 25)
+			timer.start()
+		\"PreCorridor1\":
+			position = \"Corridor1\"
+			anim.play(\"Corridor1VhoditIn\")
+			timer.wait_time = rand_range(5, 10)
+			timer.start()
+		\"Corridor1\":
+			print(\"Attack!\")
+			position = \"notexist\"
+			anim.play(\"RESET\")
+		\"MoveAway\":
+			position = \"CoriAway\"
+			anim.play(\"Corridor1VigladivaetOut\")
+			timer.wait_time = rand_range(4, 5)
+			timer.start()
+		\"CoriAway\":
+			position = \"notexist1\"
+			anim.play(\"Corridor1VhoditOut\")
+			timer.wait_time = rand_range(4, 5)
+			timer.start()	
+		\"notexist1\":
+			position = \"notexist\"
+			anim.play(\"RESET\")
+			timer.start()
+
+func _on_Timer_timeout():
+	makeStep()
+
+
+func _on_Monetization_pressed():
+	if position == \"PreCorridor1\":
+		position = \"CoriAway\"
+		makeStep()
+	if position == \"Corridor1\":
+		position = \"MoveAway\"
+		makeStep()
+	pass # Replace with function body.
+"
 
 [sub_resource type="ArrayMesh" id=81]
 resource_name = "Альберт_FreeAllSTL004"
@@ -1189,6 +1273,60 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 144.408, 0 ) ]
 }
 
+[sub_resource type="Animation" id=114]
+resource_name = "InRoom"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -8.6125, 1.12339, -7.1277 ), Vector3( -9.301, 1.124, -6.321 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -51.334, 0 ), Vector3( 0, -51.334, 0 ) ]
+}
+
+[sub_resource type="Animation" id=115]
+resource_name = "PreRunCoridor"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -6.44046, 1.13126, -5.45567 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -2.9855, 0 ) ]
+}
+
 [sub_resource type="Animation" id=95]
 length = 0.001
 tracks/0/type = "value"
@@ -1201,7 +1339,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0.657807, 1.12339, 7.35363 ) ]
+"values": [ Vector3( 0.657807, 4.91972, 7.35363 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:rotation_degrees")
@@ -1214,6 +1352,33 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( 0, 144.408, 0 ) ]
+}
+
+[sub_resource type="Animation" id=116]
+resource_name = "RunCorridor"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -6.44046, 1.13126, -5.45567 ), Vector3( -6.44046, 1.13126, 8.57866 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -2.9855, 0 ), Vector3( 0, -2.9855, 0 ) ]
 }
 
 [node name="Spatial" type="Spatial"]
@@ -1237,6 +1402,25 @@ rect_scale = Vector2( -1, 1 )
 stream = ExtResource( 3 )
 volume_db = -80.0
 autoplay = true
+script = SubResource( 68 )
+
+[node name="InstallingLinux" type="Viewport" parent="Cams"]
+size = Vector2( 560, 315 )
+fxaa = true
+hdr = false
+disable_3d = true
+usage = 0
+render_target_v_flip = true
+
+[node name="VideoPlayer" type="VideoPlayer" parent="Cams/InstallingLinux"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 560.0
+margin_right = 560.0
+rect_scale = Vector2( -1, 1 )
+audio_track = 1
+stream = ExtResource( 17 )
+volume_db = -80.0
 script = SubResource( 68 )
 
 [node name="VideoSubShield2" type="Viewport" parent="Cams"]
@@ -1459,8 +1643,17 @@ texture_subShieldZayavka = SubResource( 69 )
 texture_subShield1 = SubResource( 108 )
 texture_subShield2 = SubResource( 71 )
 texture_subShield3 = SubResource( 110 )
+texture_linuxInstall = SubResource( 118 )
 texture_camCorridor4 = SubResource( 106 )
 texture_camRoom1 = SubResource( 112 )
+mon1 = NodePath("../Stol/Экран1")
+mon2 = NodePath("../Stol/Экран2")
+mon3 = NodePath("../Stol/Экран3")
+mon4 = NodePath("../Stol/Экран4")
+mon5 = NodePath("../Stol/Экран5")
+mon6 = NodePath("../Stol/Экран6")
+mon7 = NodePath("../Stol/Экран7")
+mon8 = NodePath("../Stol/Экран8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
 anims/Back = SubResource( 5 )
@@ -1483,6 +1676,84 @@ parameters/conditions/ZoomIn = false
 parameters/conditions/ZoomIn2 = false
 parameters/conditions/to_norm = true
 parameters/conditions/wathDoor = false
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch_mode = 3
+alignment_horizontal = 2
+alignment_vertical = 2
+
+[node name="Label" type="Label" parent="Control/AspectRatioContainer"]
+margin_top = 81.0
+margin_right = 1024.0
+margin_bottom = 95.0
+
+[node name="Backs" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Monetization" type="Button" parent="Backs"]
+margin_left = 750.0
+margin_top = 522.0
+margin_right = 960.0
+margin_bottom = 553.0
+custom_styles/hover = SubResource( 80 )
+custom_styles/pressed = SubResource( 80 )
+custom_styles/focus = SubResource( 80 )
+custom_styles/disabled = SubResource( 80 )
+custom_styles/normal = SubResource( 80 )
+text = "USE MONETIZATION POSTER"
+
+[node name="MusixBox" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MusixBox"]
+transform = Transform( -0.937627, 0, 0.347643, 0, 1, 0, -0.347643, 0, -0.937627, 0.589776, 1.0144, -3.025 )
+stream = ExtResource( 5 )
+unit_db = -16.401
+autoplay = true
+
+[node name="TimeBar" type="HSlider" parent="MusixBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 37.0
+margin_top = 29.0
+margin_right = -28.0
+margin_bottom = -569.894
+rect_min_size = Vector2( 0, 20 )
+custom_icons/tick = SubResource( 75 )
+custom_icons/grabber_disabled = SubResource( 79 )
+custom_icons/grabber_highlight = SubResource( 75 )
+custom_icons/grabber = SubResource( 75 )
+custom_styles/slider = SubResource( 77 )
+custom_styles/grabber_area = SubResource( 78 )
+max_value = 182.0
+step = 0.01
+value = 8.82
+allow_greater = true
+allow_lesser = true
+editable = false
+scrollable = false
+
+[node name="ResetBut" type="Button" parent="MusixBox"]
+margin_left = 37.0
+margin_top = 60.0
+margin_right = 182.0
+margin_bottom = 80.0
+custom_styles/hover = SubResource( 80 )
+custom_styles/pressed = SubResource( 80 )
+custom_styles/focus = SubResource( 80 )
+custom_styles/disabled = SubResource( 80 )
+custom_styles/normal = SubResource( 80 )
+text = "RESTART MUSIC BOX"
 
 [node name="SpotLight2" type="SpotLight" parent="."]
 transform = Transform( 0.461275, 0.552325, 0.694379, 0.00305513, -0.783597, 0.621262, 0.887252, -0.284451, -0.363141, 2.50325, 1.65545, 6.11849 )
@@ -1551,63 +1822,13 @@ mesh = SubResource( 13 )
 transform = Transform( 0.998162, 0, -0.0606014, 0, 1, 0, 0.0606014, 0, 0.998162, -0.0306978, 1.22032, 0.411903 )
 mesh = SubResource( 52 )
 
-[node name="Mouse" type="Area" parent="Stol"]
+[node name="Mouse" type="Spatial" parent="Stol"]
 transform = Transform( 0.811286, 0, -0.584649, 0, 1, 0, 0.584649, 0, 0.811286, -0.323248, 1.22032, 1.11951 )
-collision_layer = 4294967295
-collision_mask = 4294967295
 
 [node name="МЫШ!" type="MeshInstance" parent="Stol/Mouse"]
 transform = Transform( 1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -4.76837e-07, -3.57628e-07, -4.76837e-07 )
 mesh = SubResource( 53 )
 skeleton = NodePath("../..")
-
-[node name="CollisionShape" type="CollisionShape" parent="Stol/Mouse"]
-shape = SubResource( 72 )
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Stol/Mouse"]
-transform = Transform( 2.46127, 0, 0, 0, 2.46127, 0, 0, 0, 2.46127, 0.315764, 0.688139, -1.47443 )
-stream = ExtResource( 5 )
-unit_db = -16.401
-autoplay = true
-
-[node name="Control" type="Control" parent="Stol/Mouse"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = SubResource( 73 )
-
-[node name="HSlider" type="HSlider" parent="Stol/Mouse/Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 37.0
-margin_top = 29.0
-margin_right = -28.0
-margin_bottom = -569.894
-rect_min_size = Vector2( 0, 20 )
-custom_icons/tick = SubResource( 75 )
-custom_icons/grabber_disabled = SubResource( 79 )
-custom_icons/grabber_highlight = SubResource( 75 )
-custom_icons/grabber = SubResource( 75 )
-custom_styles/slider = SubResource( 77 )
-custom_styles/grabber_area = SubResource( 78 )
-max_value = 182.0
-step = 0.01
-value = 8.82
-allow_greater = true
-allow_lesser = true
-editable = false
-scrollable = false
-
-[node name="Button" type="Button" parent="Stol/Mouse/Control"]
-margin_left = 37.0
-margin_top = 60.0
-margin_right = 182.0
-margin_bottom = 80.0
-custom_styles/hover = SubResource( 80 )
-custom_styles/pressed = SubResource( 80 )
-custom_styles/focus = SubResource( 80 )
-custom_styles/disabled = SubResource( 80 )
-custom_styles/normal = SubResource( 80 )
-text = "RESTART MUSIC BOX"
 
 [node name="Клавиши" type="MeshInstance" parent="Stol"]
 transform = Transform( 0.998632, 0, -0.0522924, 0, 1, 0, 0.0522924, 0, 0.998632, 0.0440324, 1.23411, 0.663455 )
@@ -1671,7 +1892,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37809, 1.0536, 0.636048 )
 mesh = SubResource( 28 )
 
 [node name="Альберт" type="Spatial" parent="."]
-transform = Transform( -0.284614, 0, 0.203703, 0, 0.35, 0, -0.203703, 0, -0.284614, 0.657807, 1.12339, 7.35363 )
+transform = Transform( -0.284614, 0, 0.203703, 0, 0.35, 0, -0.203703, 0, -0.284614, 0.657807, 4.91972, 7.35363 )
+script = SubResource( 113 )
+position = "RunCorridor"
 
 [node name="АльбертТело001" type="MeshInstance" parent="Альберт"]
 transform = Transform( 0.469528, 0, -2.98023e-08, 0, 0.469528, 0, 2.98023e-08, 0, 0.469528, 0.42283, -0.950396, 0.549844 )
@@ -1710,11 +1933,20 @@ anims/Corridor1VhoditIn = SubResource( 91 )
 anims/Corridor1VhoditOut = SubResource( 92 )
 anims/Corridor1VigladivaetIn = SubResource( 93 )
 anims/Corridor1VigladivaetOut = SubResource( 94 )
+anims/InRoom = SubResource( 114 )
+anims/PreRunCoridor = SubResource( 115 )
 anims/RESET = SubResource( 95 )
+anims/RunCorridor = SubResource( 116 )
+
+[node name="Timer" type="Timer" parent="Альберт"]
+one_shot = true
 
 [connection signal="finished" from="Cams/VideoZayava/VideoPlayer" to="Cams/VideoZayava/VideoPlayer" method="_on_VideoPlayer_finished"]
+[connection signal="finished" from="Cams/InstallingLinux/VideoPlayer" to="Cams/InstallingLinux/VideoPlayer" method="_on_VideoPlayer_finished"]
 [connection signal="finished" from="Cams/VideoSubShield2/VideoPlayer" to="Cams/VideoSubShield2/VideoPlayer" method="_on_VideoPlayer_finished"]
 [connection signal="finished" from="Cams/VideoSubShield3/VideoPlayer" to="Cams/VideoSubShield3/VideoPlayer" method="_on_VideoPlayer_finished"]
 [connection signal="finished" from="Cams/VideoSubShield1/VideoPlayer" to="Cams/VideoSubShield1/VideoPlayer" method="_on_VideoPlayer_finished"]
-[connection signal="input_event" from="Stol/Mouse" to="Stol/Mouse/Control" method="_on_Mouse_input_event"]
-[connection signal="pressed" from="Stol/Mouse/Control/Button" to="Stol/Mouse/Control" method="_on_Button_pressed"]
+[connection signal="pressed" from="Backs/Monetization" to="Camera" method="_on_Monetization_pressed"]
+[connection signal="pressed" from="Backs/Monetization" to="Альберт" method="_on_Monetization_pressed"]
+[connection signal="pressed" from="MusixBox/ResetBut" to="Camera" method="_on_ResetBut_pressed"]
+[connection signal="timeout" from="Альберт/Timer" to="Альберт" method="_on_Timer_timeout"]
