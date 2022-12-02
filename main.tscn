@@ -4,7 +4,7 @@
 [ext_resource path="res://Camera.gd" type="Script" id=2]
 [ext_resource path="res://videos/SubSh.webm" type="VideoStream" id=3]
 [ext_resource path="res://videos/SubShield1.webm" type="VideoStream" id=4]
-[ext_resource path="res://videos/Kabanchik.ogg" type="AudioStream" id=5]
+[ext_resource path="res://sounds/musics/Kabanchik.ogg" type="AudioStream" id=5]
 [ext_resource path="res://models/Рубаха.material" type="Material" id=6]
 [ext_resource path="res://models/Трусы.material" type="Material" id=7]
 [ext_resource path="res://models/Безграничнаятьма!.material" type="Material" id=8]
@@ -203,7 +203,7 @@ params_specular_mode = 4
 params_cull_mode = 2
 params_depth_draw_mode = 2
 albedo_texture = SubResource( 105 )
-uv1_scale = Vector3( 1.1, 0.6, 0.6 )
+uv1_scale = Vector3( -1.1, 0.6, -0.6 )
 uv1_offset = Vector3( -0.5, -0.5, -0.5 )
 uv1_triplanar = true
 
@@ -220,7 +220,7 @@ params_specular_mode = 4
 params_cull_mode = 2
 params_depth_draw_mode = 2
 albedo_texture = SubResource( 111 )
-uv1_scale = Vector3( 1.1, 0.6, 0.6 )
+uv1_scale = Vector3( -1.1, 0.6, -0.6 )
 uv1_offset = Vector3( -0.5, -0.5, -0.5 )
 uv1_triplanar = true
 
@@ -1583,12 +1583,18 @@ width = 0.860985
 height = 1.2
 depth = 14.4267
 
+[node name="SpotLight2" type="SpotLight" parent="Rooms/Corridor2"]
+transform = Transform( 0.887252, -0.284451, -0.363141, 0.00245392, -0.629395, 0.499005, -0.461275, -0.552325, -0.694379, -1.08129, 0.730482, -2.03679 )
+light_color = Color( 0.898039, 0.776471, 0.666667, 1 )
+spot_range = 4.36759
+spot_angle = 31.96
+
 [node name="Corridor3" type="CSGBox" parent="Rooms"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1.245, 0, 1, 0, -4.37114e-08, -4.76785, 0.746, 1.68168 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1.245, 0, 1, 0, -4.37114e-08, -7.02474, 0.746, 1.68168 )
 invert_faces = true
 width = 0.860985
 height = 1.2
-depth = 3.6078
+depth = 8.80428
 
 [node name="Corridor4" type="CSGBox" parent="Rooms"]
 transform = Transform( -1, 0, 1.50996e-07, 0, 1.245, 0, -1.50996e-07, 0, -1, -6.31573, 0.746, 1.14814 )
@@ -1710,6 +1716,8 @@ custom_styles/disabled = SubResource( 80 )
 custom_styles/normal = SubResource( 80 )
 text = "USE MONETIZATION POSTER"
 
+[node name="MonetizationOtkat" type="Timer" parent="Backs"]
+
 [node name="MusixBox" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -1735,7 +1743,7 @@ custom_icons/grabber_highlight = SubResource( 75 )
 custom_icons/grabber = SubResource( 75 )
 custom_styles/slider = SubResource( 77 )
 custom_styles/grabber_area = SubResource( 78 )
-max_value = 182.0
+max_value = 60.0
 step = 0.01
 value = 8.82
 allow_greater = true
@@ -1754,15 +1762,6 @@ custom_styles/focus = SubResource( 80 )
 custom_styles/disabled = SubResource( 80 )
 custom_styles/normal = SubResource( 80 )
 text = "RESTART MUSIC BOX"
-
-[node name="SpotLight2" type="SpotLight" parent="."]
-transform = Transform( 0.461275, 0.552325, 0.694379, 0.00305513, -0.783597, 0.621262, 0.887252, -0.284451, -0.363141, 2.50325, 1.65545, 6.11849 )
-light_color = Color( 0.898039, 0.776471, 0.666667, 1 )
-spot_range = 4.36759
-spot_angle = 31.96
-
-[node name="Spatial" type="Spatial" parent="."]
-transform = Transform( -0.39164, 0, -0.108133, 0, 0.406294, 0, 0.108133, 0, -0.39164, 0.802652, 0.239, -2.24204 )
 
 [node name="Stol" type="Spatial" parent="."]
 transform = Transform( -0.39164, 0, -0.108133, 0, 0.406294, 0, 0.108133, 0, -0.39164, 0.802652, 0.239, -2.24204 )

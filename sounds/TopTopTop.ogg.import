@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/TopTopTop.ogg-981c7e753e8dd6cdab5b3578d4a52125.oggstr"
+
+[deps]
+
+source_file="res://sounds/TopTopTop.ogg"
+dest_files=[ "res://.import/TopTopTop.ogg-981c7e753e8dd6cdab5b3578d4a52125.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

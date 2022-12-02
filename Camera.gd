@@ -37,40 +37,51 @@ func _ready():
 	get_node(mon8).set_surface_material(0, texture_camCorridor4)
 	pass
 
-func _process(_delta):
-	#Перемещения
+func set_state():
 	if Input.is_action_pressed("game_watchDoor"):
-		state = "door"
-		$AnimationTree.set("parameters/conditions/wathDoor", true)
-		$AnimationTree.set("parameters/conditions/to_norm", false)
+		if state == "none":
+			state = "door"
+			$AnimationTree.set("parameters/conditions/wathDoor", true)
+			$AnimationTree.set("parameters/conditions/to_norm", false)
+		return
 	else:
 		$AnimationTree.set("parameters/conditions/wathDoor", false)
 		
-		if Input.is_action_pressed("game_zoomIn1"):
+	if Input.is_action_pressed("game_zoomIn1"):
+		if state == "none":
 			state = "cams1"
 			$AnimationTree.set("parameters/conditions/to_norm", false)
 			$AnimationTree.set("parameters/conditions/ZoomIn", true)
-		else:
-			$AnimationTree.set("parameters/conditions/ZoomIn", false)
+		return
+	else:
+		$AnimationTree.set("parameters/conditions/ZoomIn", false)
 			
-			if Input.is_action_pressed("game_zoomIn2"):
-				state = "cams2"
-				$AnimationTree.set("parameters/conditions/to_norm", false)
-				$AnimationTree.set("parameters/conditions/ZoomIn2", true)
-			else:
-				$AnimationTree.set("parameters/conditions/ZoomIn2", false)
+	if Input.is_action_pressed("game_zoomIn2"):
+		if state == "none":
+			state = "cams2"
+			$AnimationTree.set("parameters/conditions/to_norm", false)
+			$AnimationTree.set("parameters/conditions/ZoomIn2", true)
+		return
+	else:
+		$AnimationTree.set("parameters/conditions/ZoomIn2", false)
 				
-				if Input.is_action_pressed("game_watchBack"):
-					state = "back"
-					$AnimationTree.set("parameters/conditions/to_norm", false)
-					$AnimationTree.set("parameters/conditions/Back", true)
-				else:
-					state = "none"
-					$AnimationTree.set("parameters/conditions/Back", false)
-					$AnimationTree.set("parameters/conditions/to_norm", true)
+	if Input.is_action_pressed("game_watchBack"):
+		if state == "none":
+			state = "back"
+			$AnimationTree.set("parameters/conditions/to_norm", false)
+			$AnimationTree.set("parameters/conditions/Back", true)
+		return
+	else:
+		$AnimationTree.set("parameters/conditions/Back", false)
+	$AnimationTree.set("parameters/conditions/to_norm", true)
+	state = "none"
+
+func _process(_delta):
+	#Перемещения
+	set_state()
 	#Гуишка музикбокса
 	$"../MusixBox/TimeBar".value = $"../MusixBox/AudioStreamPlayer3D".get_playback_position()
-	if $"../MusixBox/TimeBar".value > 180:
+	if $"../MusixBox/TimeBar".value > 60:
 		if flag == true:
 			return
 		flag = true
@@ -90,6 +101,7 @@ func _process(_delta):
 	else:
 		$"../MusixBox".hide()
 		$"../MusixBox/AudioStreamPlayer3D".unit_db = -40
+	#Гуишка Постера монетизации
 	if state == "back":
 		$"../Backs".show()
 	else:

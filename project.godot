@@ -13,9 +13,27 @@ _global_script_classes=[ {
 "class": "CommonNode",
 "language": "GDScript",
 "path": "res://addons/project_map/pm_common_node.gd"
+}, {
+"base": "EditorProperty",
+"class": "EC_CreateCategory",
+"language": "GDScript",
+"path": "res://addons/export_categories/ec_create_category.gd"
+}, {
+"base": "Node",
+"class": "animatronic",
+"language": "GDScript",
+"path": "res://scripts/animatronic.gd"
+}, {
+"base": "Resource",
+"class": "state",
+"language": "GDScript",
+"path": "res://scripts/state.gd"
 } ]
 _global_script_class_icons={
-"CommonNode": ""
+"CommonNode": "",
+"EC_CreateCategory": "",
+"animatronic": "",
+"state": ""
 }
 
 [application]
@@ -26,7 +44,11 @@ config/icon="res://videos/Ikon.jpg"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/blend/plugin.cfg", "res://addons/imrp/plugin.cfg", "res://addons/project_map/plugin.cfg", "res://addons/scatter-master/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/blend/plugin.cfg", "res://addons/export_categories/plugin.cfg", "res://addons/imrp/plugin.cfg", "res://addons/project_map/plugin.cfg", "res://addons/scatter-master/plugin.cfg" )
+
+[global]
+
+rced=false
 
 [gui]
 

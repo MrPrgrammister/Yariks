@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Kabanchik.ogg-3859df7afe0f5e36e6bf7a231f32e4f1.oggstr"
+
+[deps]
+
+source_file="res://sounds/musics/Kabanchik.ogg"
+dest_files=[ "res://.import/Kabanchik.ogg-3859df7afe0f5e36e6bf7a231f32e4f1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
