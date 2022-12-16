@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ОзвучкаАльберта.ogg-d6d6bd06691fdb3ae7089ef2e6ea808a.oggstr"
+
+[deps]
+
+source_file="res://sounds/ОзвучкаАльберта.ogg"
+dest_files=[ "res://.import/ОзвучкаАльберта.ogg-d6d6bd06691fdb3ae7089ef2e6ea808a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
