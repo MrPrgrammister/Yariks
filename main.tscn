@@ -1508,7 +1508,7 @@ mesh = SubResource( 89 )
 material/0 = SubResource( 90 )
 
 [node name="SpotLight" type="SpotLight" parent="Rooms/RoomMain"]
-transform = Transform( 0.996794, -0.0799594, 0.00292589, -0.000860282, 0.0258555, 0.999665, -0.0800083, -0.996463, 0.0257038, 0.21411, 0.8676, 0.184426 )
+transform = Transform( 0.996794, -0.0799594, 0.00292589, -0.000860282, 0.0258555, 0.999665, -0.0800083, -0.996463, 0.0257038, 0.21411, 0.919112, 0.184426 )
 light_color = Color( 0.941176, 0.74902, 0.635294, 1 )
 spot_range = 8.828
 spot_angle = 69.55
@@ -1569,8 +1569,32 @@ depth = 8.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.962227, 0 )
 light_color = Color( 0.898039, 0.776471, 0.666667, 1 )
 
+[node name="Room3" type="CSGBox" parent="Rooms"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19.6592, 1, -1.87069 )
+invert_faces = true
+width = 4.0
+depth = 4.0
+
+[node name="Room8" type="CSGBox" parent="Rooms"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -27.6592, 1, 0.12931 )
+invert_faces = true
+width = 14.0
+depth = 4.0
+
+[node name="Room5" type="CSGBox" parent="Rooms"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24.6592, 1, -20.8707 )
+invert_faces = true
+width = 4.0
+depth = 4.0
+
+[node name="Room4" type="CSGBox" parent="Rooms"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24.6592, 1, -13.8707 )
+invert_faces = true
+width = 12.0
+depth = 12.0
+
 [node name="Corridor1" type="CSGBox" parent="Rooms"]
-transform = Transform( 1, 0, 0, 0, 1.245, 0, 0, 0, 1, 1, 0.746, 5.65191 )
+transform = Transform( 1, 0, 0, 0, 1.245, 0, 0, 0, 1, 1.06892, 0.746, 5.64537 )
 invert_faces = true
 width = 0.860985
 height = 1.2
@@ -1590,11 +1614,73 @@ spot_range = 4.36759
 spot_angle = 31.96
 
 [node name="Corridor3" type="CSGBox" parent="Rooms"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1.245, 0, 1, 0, -4.37114e-08, -7.02474, 0.746, 1.68168 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1.245, 0, 1, 0, -4.37114e-08, -13.0247, 0.746, 1.68168 )
 invert_faces = true
 width = 0.860985
 height = 1.2
-depth = 8.80428
+depth = 14.0
+
+[node name="Corridor5" type="CSGBox" parent="Rooms"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1.245, 0, 1.06581e-14, 0, 1, -20.0247, 0.746, 6.24145 )
+invert_faces = true
+width = 0.860985
+height = 1.2
+depth = 10.0
+
+[node name="Corridor7" type="CSGBox" parent="Rooms"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1.245, 0, 1.06581e-14, 0, 1, -24.0247, 0.746, 3.24145 )
+invert_faces = true
+width = 0.860985
+height = 1.2
+depth = 10.0
+
+[node name="Corridor9" type="CSGBox" parent="Rooms"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1.245, 0, 1.06581e-14, 0, 1, -24.0247, 0.746, -4.75855 )
+invert_faces = true
+width = 0.860985
+height = 1.2
+depth = 8.0
+
+[node name="Corridor6" type="CSGBox" parent="Rooms"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1.245, 0, 1, 0, -4.37114e-08, -20.5982, 0.746, 11.2414 )
+invert_faces = true
+width = 0.860985
+height = 1.2
+
+[node name="Corridor10" type="CSGBox" parent="Rooms"]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1.245, 0, 0.707107, 0, -0.707107, -19.5982, 0.746, 13.2414 )
+invert_faces = true
+width = 0.860985
+height = 1.2
+depth = 6.0
+
+[node name="Corridor8" type="CSGBox" parent="Rooms"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1.245, 0, 1, 0, -4.37114e-08, -23.5982, 0.746, -0.758554 )
+invert_faces = true
+width = 0.860985
+height = 1.2
+depth = 6.0
+
+[node name="VentCOr1" type="CSGBox" parent="Rooms"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1.245, 0, 1.06581e-14, 0, 1, -11.4418, 1.13502, -20.8455 )
+invert_faces = true
+width = 0.5
+height = 0.313
+depth = 4.0
+
+[node name="VentCOr2" type="CSGBox" parent="Rooms"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1.245, 0, 1, 0, -4.37114e-08, -4.64518, 1.13502, -22.5729 )
+invert_faces = true
+width = 0.5
+height = 0.313
+depth = 14.0
+
+[node name="VentCOr3" type="CSGBox" parent="Rooms"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1.245, 0, -8.74228e-08, 0, -1, 2.10019, 1.13502, -13.1505 )
+invert_faces = true
+width = 0.5
+height = 0.313
+depth = 18.5556
 
 [node name="Corridor4" type="CSGBox" parent="Rooms"]
 transform = Transform( -1, 0, 1.50996e-07, 0, 1.245, 0, -1.50996e-07, 0, -1, -6.31573, 0.746, 1.14814 )
@@ -1639,6 +1725,37 @@ material/0 = ExtResource( 12 )
 transform = Transform( -0.902469, 1.79309e-08, 0.430755, 0.0410863, 0.797529, 0.0860793, -0.427707, 0.118751, -0.896083, 0.163456, -0.494446, -2.656 )
 mesh = SubResource( 99 )
 skeleton = NodePath("../../RoomMain")
+
+[node name="Room6" type="CSGBox" parent="Rooms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3654, 1, -10 )
+invert_faces = true
+width = 6.0
+depth = 20.0
+
+[node name="OmniLight2" type="OmniLight" parent="Rooms/Room6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.992051, -0.284056 )
+light_color = Color( 0.898039, 0.776471, 0.666667, 1 )
+
+[node name="OmniLight3" type="OmniLight" parent="Rooms/Room6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.992051, 7.01734 )
+light_color = Color( 0.898039, 0.776471, 0.666667, 1 )
+
+[node name="OmniLight" type="OmniLight" parent="Rooms/Room6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.962227, -8.03197 )
+light_color = Color( 0.898039, 0.776471, 0.666667, 1 )
+
+[node name="Room7" type="CSGBox" parent="Rooms"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.36544, 1, 13.5489 )
+invert_faces = true
+width = 6.0
+depth = 25.9143
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Rooms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3085, 0.989331, 10.9991 )
+invert_faces = true
+radius = 3.0
+height = 2.0
+sides = 13
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -0.0167894, 0, 0.999859, 0, 1, 0, -0.999859, 0, -0.0167894, 1.425, 1.04, -2.681 )
